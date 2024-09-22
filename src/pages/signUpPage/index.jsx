@@ -17,6 +17,10 @@ const SignUpPage = () =>{
     const [rePassword, setRePassword] = useState("");
 
     const regist = async () =>{
+        if(password === "" || teamName === "" || rePassword === ""){
+            alert("fill the form!");
+            return;
+        }
         let pwd = await getTeamPasswordByName(teamName);
         if(pwd !== "-"){
             alert("Your team is registed already!");

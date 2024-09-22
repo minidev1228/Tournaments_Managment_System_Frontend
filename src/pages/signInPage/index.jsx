@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import {getTeamPasswordByName, getTeamIdByName} from "../../apis/teamApi"
 
 import Input1 from "../../components/input1" 
 import Button1 from "../../components/button1"
@@ -10,11 +13,29 @@ import "./index.css"
 
 const SignInPage = () =>{
 
+    const navigate = useNavigate();
+
     const [teamName, setTeamName] = useState("");
     const [password, setPassword] = useState("");
 
-    const login = () =>{
-        console.log(teamName, password);
+    const login = async() =>{
+        if(password === "" || teamName === ""){
+            alert("fill the form!");
+            return;
+        }
+        let pwd = await getTeamPasswordByName(teamName);
+        if(pwd === "-"){
+            alert("Your team is not registered");
+            return;
+        }
+        if(pwd !== password){
+            alert("Wrong password");
+            return;
+        }
+        let id = await getTeamIdByName(teamName);
+        localStorage.setItem("IsLogIn", "yes");
+        localStorage.setItem("id", id);
+        navigate("/myteam");
     }
 
     return (

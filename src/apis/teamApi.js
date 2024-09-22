@@ -1,5 +1,5 @@
 import React from "react";
-import { collection, addDoc, getDocs } from "firebase/firestore";
+import { collection, addDoc, getDocs, doc, setDoc, updateDoc, getDoc } from "firebase/firestore";
 import {db} from '../firebase';
 
 export const getTeamPasswordByName = async(name) =>{
@@ -16,11 +16,57 @@ export const getTeamPasswordByName = async(name) =>{
     return pwd;
 }
 
+export const getTeamIdByName = async(name) =>{
+    let data = await getDocs(collection(db, 'teams'));
+    let id = "";
+    data.docs.forEach((doc, key) => {
+        let t = doc.data();
+        if(t.name === name){
+            id = t.id;
+        }
+    });
+    console.log(id);
+    return id;
+}
+
+export const updateTeamProfile = async(info) =>{
+    const teams = await getDocs(collection(db, "teams"));
+    let data = {};
+    teams.docs.forEach(team => {
+        if(team.id === localStorage.getItem("id")){
+            data = team.data();
+        }
+    });
+    const ref = doc(db, "teams", localStorage.getItem("id"));
+    setDoc(ref, {...data, ...info});
+}
+
+export const getTeamData = async() =>{
+    const teams = await getDocs(collection(db, "teams"));
+    let data = {};
+    teams.docs.forEach(team => {
+        if(team.id === localStorage.getItem("id")){
+            data = team.data();
+        }
+    });
+
+    return data;
+}
+
+const generateId = () =>{
+    let id = "";
+    for(let i = 0; i<10;i++){
+        let d = Math.floor(Math.random() * 10);;
+        id = `${id}${d}`;
+    }
+    return id;
+}
+
 export const addNewTeam = async (name, password) =>{
 
-    await addDoc(collection(db, "teams"), {
-        name, password    
-    });
+    let newId = generateId();
+    const ref = doc(db, "teams", newId);
+    setDoc(ref, {name, password, id: newId});
 
     return true;
 }

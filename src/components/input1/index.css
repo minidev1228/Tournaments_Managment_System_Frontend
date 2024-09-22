@@ -1,0 +1,11 @@
+.input1{
+    display: flex;
+    flex-direction: row;
+    height: 40px;
+    background-color: #d7ba91;
+    border-radius: 5px 0 0 5px;
+}
+
+.input1 img{
+    margin: 5px;
+}

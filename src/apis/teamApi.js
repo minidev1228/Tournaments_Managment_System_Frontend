@@ -66,7 +66,58 @@ export const addNewTeam = async (name, password) =>{
 
     let newId = generateId();
     const ref = doc(db, "teams", newId);
-    setDoc(ref, {name, password, id: newId});
+    setDoc(ref, {name, password, id: newId, members:[]});
 
     return true;
+}
+
+export const addMember = async(member) =>{
+    const teams = await getDocs(collection(db, "teams"));
+    let data = {};
+    teams.docs.forEach(team => {
+        if(team.id === localStorage.getItem("id")){
+            data = team.data();
+        }
+    });
+    const ref = doc(db, "teams", localStorage.getItem("id"));
+    setDoc(ref, {...data, members:[...data.members, member]});
+}
+
+export const updateMember = async(id, member) =>{
+    const teams = await getDocs(collection(db, "teams"));
+    let data = {};
+    teams.docs.forEach(team => {
+        if(team.id === localStorage.getItem("id")){
+            data = team.data();
+        }
+    });
+    let currentMembers = data.members;
+    currentMembers = currentMembers.map((memb, key)=>id===key?member:memb);
+    const ref = doc(db, "teams", localStorage.getItem("id"));
+    setDoc(ref, {...data, members:currentMembers});
+}
+
+export const removeMember = async(id) =>{
+    const teams = await getDocs(collection(db, "teams"));
+    let data = {};
+    teams.docs.forEach(team => {
+        if(team.id === localStorage.getItem("id")){
+            data = team.data();
+        }
+    });
+    let currentMembers = data.members;
+    currentMembers = currentMembers.filter((memb, key)=>id!==key);
+    const ref = doc(db, "teams", localStorage.getItem("id"));
+    setDoc(ref, {...data, members:currentMembers});
+}
+
+export const getAllMembers = async() =>{
+    const teams = await getDocs(collection(db, "teams"));
+    let data = {};
+    teams.docs.forEach(team => {
+        if(team.id === localStorage.getItem("id")){
+            data = team.data();
+        }
+    });
+    return data.members;
 }

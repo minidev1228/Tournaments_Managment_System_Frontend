@@ -1,0 +1,41 @@
+.member-profile-modal{
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(0, 0, 0, 0.281);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.member-profile-modal > div {
+    height: 50vh;
+    width: 200px;
+    /* background-color: white; */
+}
+
+.member-profile-modal > div > div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.member-profile-modal input{
+    height: 30px;
+}
+
+.member-profile-modal select{
+    height: 40px;
+}
+.member-profile-modal-button-group{
+    display: flex;
+    justify-content: space-around;
+    padding-left: 50%;
+}
+
+.member-profile-modal-button-group button{
+    margin-right: 20px;
+}

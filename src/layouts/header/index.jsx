@@ -13,7 +13,7 @@ const Header = () =>{
     const navigate = useNavigate();
 
     const logOut = () =>{
-        localStorage.setItem("isLogin", "no");
+        localStorage.setItem("IsLogIn", "no");
         navigate("/");
     }
 

@@ -169,7 +169,7 @@ const ViewPage = () =>{
                             filteredTeams.map(team=><TeamCard name={team.name} link={team.link} rank={team.rank} league={team.league} street={team.region} />)
                         }
                     </div>
-                </div> : <div style={{display:"flex"}}>
+                </div> : selectedButton === "events" ? <div style={{display:"flex"}}>
                     <div className="event-page-left">
                         {
                             events?.map((event, id) =><EventItem handleClickEvent={()=>{clickItem(event.id, id)}} date={event.date} hteam={event.hemiteam} gteam={event.gastteam} status={selectedId===event.id} />)
@@ -199,7 +199,7 @@ const ViewPage = () =>{
                             }
                         </table>
                     </div>
-                </div>
+                </div>:""
                 }
             </div>
         </div>

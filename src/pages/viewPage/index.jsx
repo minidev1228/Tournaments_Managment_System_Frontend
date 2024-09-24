@@ -66,7 +66,7 @@ const ViewPage = () =>{
         })
         console.log(arr);
         setFilteredTeam(arr);
-    }, [league, teamName, region])
+    }, [league, teamName, region, teams])
 
     useEffect(()=>{
         // if(teams === undefined || teams.length === 0) return;
@@ -81,7 +81,7 @@ const ViewPage = () =>{
         })
         console.log(arr);
         setFilteredTeams(arr);
-    }, [teamLeague, teamName, teamRegion])
+    }, [teamLeague, teamName, teamRegion, teams])
 
     useEffect(()=>{
         const run = async() =>{

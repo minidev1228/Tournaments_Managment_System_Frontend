@@ -1,0 +1,31 @@
+.event-page-left{
+    height: 83vh;
+    width: 20vw;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.event-page{
+    display: flex;
+    flex-direction: row;
+}
+
+.event-page-right-top{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.event-page-right{
+    width: 80vw;
+}
+
+.event-page-right-bottom{
+    height: 71vh;
+    padding: 10px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}

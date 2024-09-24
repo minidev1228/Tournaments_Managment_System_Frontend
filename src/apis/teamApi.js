@@ -141,3 +141,15 @@ export const getAllTeams = async() =>{
     });
     return names;
 }
+
+export const getAllEnemies = async(name) =>{
+    const teams = await getDocs(collection(db, "teams"));
+    let data = {};
+    teams.docs.forEach(team => {
+        let dat = team.data();
+        if(dat.name === name){
+            data = team.data();
+        }
+    });
+    return data.members;
+}

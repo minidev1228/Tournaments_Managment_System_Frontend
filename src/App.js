@@ -6,6 +6,7 @@ import SignUpPage from './pages/signUpPage';
 import MainPage from './pages/mainPage'
 import ViewPage from './pages/viewPage'
 import AdminPage from './pages/adminPage'
+import EventPage from './pages/eventPage'
 
 import './App.css';
 
@@ -19,6 +20,7 @@ function App() {
         <Route path='/mainPage' element={<MainPage />} />
         <Route path='/viewPage' element={<SignInPage />} />
         <Route path='/adminPage' element={<AdminPage />} />
+        <Route path='/event' element={<EventPage />} />
       </Routes>
     </Router>
   );

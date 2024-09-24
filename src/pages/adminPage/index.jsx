@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useCheckAuth } from "../../auth";
 import {getAllTeams} from "../../apis/teamApi"
 import {changeAdminPassword} from "../../apis/adminAPI"
+import {createEvent, getAllEvents, deleteEvent} from "../../apis/eventAPI"
 
 import Button1 from "../../components/button1";
 import Button2 from "../../components/button2";
@@ -35,6 +36,8 @@ const AdminPage = () =>{
     useEffect(()=>{
         const run = async() =>{
             let allTeams = await getAllTeams();
+            let allEvents = await getAllEvents();
+            setEvents(allEvents);
             setTeams(["",...allTeams]);
         }
 
@@ -56,11 +59,14 @@ const AdminPage = () =>{
     }
 
     const addEvent = () =>{
-        setEvents([...events, {hemiteam:hemiTeam, gastteam:gastTeam,date:eventDate}])
+        setEvents([...events, {hemiteam:hemiTeam, gastteam:gastTeam,date:eventDate}]);
+        createEvent(hemiTeam, gastTeam, eventDate);
+        alert("Created Successfully!");
     }
 
-    const remove = (key) =>{
+    const remove = (key, id) =>{
         setEvents(events.filter((event, id)=>key!==id));
+        deleteEvent(id);
     }
 
     return (
@@ -115,7 +121,7 @@ const AdminPage = () =>{
                                             <td>{event.hemiteam}</td>
                                             <td>{event.gastteam}</td>
                                             <td>{event.date}</td>
-                                            <td><Button3 text={"Remove"} handleClickEvent={()=>{remove(key)}} /></td>
+                                            <td><Button3 text={"Remove"} handleClickEvent={()=>{remove(key, event.id)}} /></td>
                                         </tr>
                                     })
                                 }

@@ -29,6 +29,7 @@ const MainPage = () =>{
         let run = async() =>{
             let data = await getTeamData();
             console.log(data);
+            if(data.league === undefined) data.league = "A";
             setTeamInfo(data);    
             let members = await getAllMembers();
             setMembers(members);

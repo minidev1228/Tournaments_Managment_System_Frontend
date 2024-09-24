@@ -23,12 +23,9 @@ const Header = () =>{
                 <img src={dartsMark} alt="" />
                 <Button1 width={"79px"} handleClickEvent={logOut} text={"Log Out"} />
             </div>
-            <div className="header-bottom">
-                <Button2  text={"My Team"} handleClickEvent={()=>{navigate("/myteam")}}/>
-                <Button2  text={"Button1"} handleClickEvent={()=>{navigate("/myteam")}}/>
-                <Button2  text={"Button2"} handleClickEvent={()=>{navigate("/myteam")}}/>
-                <Button2  text={"Button3"} handleClickEvent={()=>{navigate("/myteam")}}/>
-                <Button2  text={"Button4"} handleClickEvent={()=>{navigate("/myteam")}}/>
+            <div className="header-bottom" style={{height:"75px"}}>
+                <Button2  text={"My Team"} handleClickEvent={()=>{navigate("/mainPage")}}/>
+                <Button2  text={"Events"} handleClickEvent={()=>{navigate("/event")}}/>
             </div>
         </div>
     )

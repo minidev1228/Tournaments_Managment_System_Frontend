@@ -71,10 +71,10 @@ export const addNewTeam = async (name, password, role) =>{
     let newId = generateId();
     if(role === "captain"){
         const ref = doc(db, "teams", newId);
-        setDoc(ref, {name, password, id: newId, members:[]});
+        setDoc(ref, {name, password, id: newId, members:[], rank:0});
     } else {
         const ref = doc(db, "players", newId);
-        setDoc(ref, {name, password, id: newId, members:[]});
+        setDoc(ref, {name, password, id: newId});
     }
 
     return true;
@@ -89,6 +89,7 @@ export const addMember = async(member) =>{
         }
     });
     const ref = doc(db, "teams", localStorage.getItem("id"));
+    member = {...member, rank:0};
     setDoc(ref, {...data, members:[...data.members, member]});
 }
 
@@ -140,6 +141,17 @@ export const getAllTeams = async() =>{
         names.push(team.data().name);
     });
     return names;
+}
+
+export const getAllDatas = async() =>{
+    let datas = [];
+    const teams = await getDocs(collection(db, "teams"));
+    let data = {};
+    teams.docs.forEach(team => {
+        // console.log();
+        datas.push(team.data());
+    });
+    return datas;
 }
 
 export const getAllEnemies = async(name) =>{

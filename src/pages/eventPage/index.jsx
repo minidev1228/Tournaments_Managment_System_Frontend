@@ -34,7 +34,8 @@ const EventPage = () =>{
     useEffect(()=>{
         if(gteamId === -1) return;
         const run = async() =>{
-            let enemies = await getAllEnemies(events[gteamId].gastteam);
+            let name =  events[gteamId].gastteam === localStorage.getItem("name")?events[gteamId].hemiteam:events[gteamId].gastteam;
+            let enemies = await getAllEnemies(name);
             setEnemy(["", ...enemies]);
         }
 
@@ -71,7 +72,7 @@ const EventPage = () =>{
             <div className="event-page">
                 <div className="event-page-left">
                     {
-                        events?.map((event, id) => <EventItem handleClickEvent={()=>{clickItem(event.id, id)}} date={event.date} hteam={event.hemiteam} gteam={event.gastteam} status={selectedId===event.id} />)
+                        events?.map((event, id) =>event.hemiteam===localStorage.getItem("name") || event.gastteam===localStorage.getItem("name")?<EventItem handleClickEvent={()=>{clickItem(event.id, id)}} date={event.date} hteam={event.hemiteam} gteam={event.gastteam} status={selectedId===event.id} />:"")
                     }
                 </div>  
                 <div className="event-page-right">
@@ -153,7 +154,7 @@ const EventPage = () =>{
                                     <td>{result.hset2} : {result.gset2}</td>
                                     <td>{result.hset3} : {result.gset3}</td>
                                     <td>{result.hscore} : {result.gscore}</td>
-                                    <td><Button3 text={"Delete"} handleClickEvent={()=>{remove(id)}} /></td>
+                                    <td><Button3 text={"Delete"} handleClickEvent={()=>{remove(id, result.hteam)}} /></td>
                                 </tr>)
                             }
                         </table>

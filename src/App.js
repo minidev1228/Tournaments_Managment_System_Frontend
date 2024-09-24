@@ -18,7 +18,7 @@ function App() {
         <Route path="/" element={<SignInPage />} />
         <Route path='/sign-up' element={<SignUpPage />} />
         <Route path='/mainPage' element={<MainPage />} />
-        <Route path='/viewPage' element={<SignInPage />} />
+        <Route path='/viewPage' element={<ViewPage />} />
         <Route path='/adminPage' element={<AdminPage />} />
         <Route path='/event' element={<EventPage />} />
       </Routes>

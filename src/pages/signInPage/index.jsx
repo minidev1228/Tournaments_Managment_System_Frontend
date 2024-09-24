@@ -41,6 +41,7 @@ const SignInPage = () =>{
         let id = await getTeamIdByName(teamName);
         localStorage.setItem("IsLogIn", "yes");
         localStorage.setItem("id", id);
+        localStorage.setItem("name", teamName);
         localStorage.setItem("role", role);
         console.log(role);
         if(role === "captain") navigate("/mainPage");

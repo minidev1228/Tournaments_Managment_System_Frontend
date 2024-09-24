@@ -12,19 +12,40 @@
 
 .event-page-right-top{
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    width: 100%;
+    width: 20%;
     padding: 10px;
     box-sizing: border-box;
 }
 
+.event-page-right-top input[type="number"]{
+    width: 50px;
+}
+
+.event-page-right-top input, .event-page-right-top select{
+    margin-left: 10px;
+    margin-right: 10px;
+    height: 30px;
+}
+
+.event-page-right-top>div{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
 .event-page-right{
     width: 80vw;
+    display: flex;
+    flex-direction: row;
 }
 
 .event-page-right-bottom{
     height: 71vh;
+    width: 80%;
     padding: 10px;
     overflow-y: auto;
     overflow-x: hidden;
